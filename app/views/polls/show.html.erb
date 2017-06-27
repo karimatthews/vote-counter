@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @poll.title %>
+</p>
+
+<p>
+  <strong>Voting method:</strong>
+  <%= @poll.voting_method %>
+</p>
+
+<p>
+  <strong>Blind:</strong>
+  <%= @poll.blind %>
+</p>
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>

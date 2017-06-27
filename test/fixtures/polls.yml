@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  voting_method: MyString
+  blind: false
+
+two:
+  title: MyString
+  voting_method: MyString
+  blind: false
