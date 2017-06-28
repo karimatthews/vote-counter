@@ -16,9 +16,13 @@
     <%= form.text_field :title, id: :poll_title %>
   </div>
 
-  <div class="field">
-    <%= form.label :voting_method %>
-    <%= form.text_field :voting_method, id: :poll_voting_method %>
+
+  <div class = "field"
+    <div id="poll_options">
+      <%= render 'poll_option' %>
+      <%= render 'poll_option' %>
+    </div>
+    <a id="addNewOption">Add New Option</a>
   </div>
 
   <div class="field">
@@ -30,3 +34,13 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<div style="display: none;" id="new_option_form">
+    <%= render partial: "poll_option", locals: {poll: false} %>
+</div>
+
+<script>
+  document.getElementById('addNewOption').addEventListener('click', function(e) {
+    $("#poll_options").append($("#new_option_form").html())
+  });
+</script>

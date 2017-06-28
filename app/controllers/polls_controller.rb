@@ -10,6 +10,7 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
+    
   end
 
   # GET /polls/new
@@ -26,6 +27,14 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(poll_params)
 
+    options_param = params[:options]
+    @options = []
+    options_param.each.with_index(1) do |option, index|
+      option = Option.create(:name => option)
+      @options.push(option)
+    end
+    @poll.options = @options
+
     respond_to do |format|
       if @poll.save
         format.html { redirect_to @poll, notice: 'Poll was successfully created.' }
@@ -36,6 +45,9 @@ class PollsController < ApplicationController
       end
     end
   end
+
+
+
 
   # PATCH/PUT /polls/1
   # PATCH/PUT /polls/1.json
@@ -69,6 +81,6 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:title, :voting_method, :blind)
+      params.require(:poll).permit(:title, :voting_method, :options, :blind)
     end
 end

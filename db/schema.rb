@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627093319) do
+ActiveRecord::Schema.define(version: 20170628082933) do
+
+  create_table "options", force: :cascade do |t|
+    t.integer "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["poll_id"], name: "index_options_on_poll_id"
+  end
 
   create_table "polls", force: :cascade do |t|
     t.string "title"
