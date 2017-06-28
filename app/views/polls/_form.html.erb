@@ -11,29 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :poll_title %>
-  </div>
 
-
-
-  <div class = "field"
-    <div id="poll_options">
-      <%= render 'poll_option' %>
-      <%= render 'poll_option' %>
+  <div class = 'form'>
+    <div class="field">
+      <%= form.label :title, 'Title / Question' %>
+      <%= form.text_field :title, id: :poll_title %>
     </div>
-    <a id="addNewOption">Add New Option</a>
+
+    <div class = "field">
+      <div id="poll_options">
+        <h3> Options: </h3>
+        <%= render 'poll_option' %>
+        <%= render 'poll_option' %>
+      </div>
+    </div>
+
+    <button id="addNewOption">Add New Option</button>
+
+    <div class="field">
+      <%= form.label :blind %>
+      <%= form.check_box :blind, id: :poll_blind %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :blind %>
-    <%= form.check_box :blind, id: :poll_blind %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
 <% end %>
 
 <div style="display: none;" id="new_option_form">
