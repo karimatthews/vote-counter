@@ -17,6 +17,7 @@
   </div>
 
 
+
   <div class = "field"
     <div id="poll_options">
       <%= render 'poll_option' %>
@@ -40,7 +41,7 @@
 </div>
 
 <script>
-  document.getElementById('addNewOption').addEventListener('click', function(e) {
+  document.getElementById('addNewOption').addEventListener('click', function() {
     $("#poll_options").append($("#new_option_form").html())
   });
 </script>

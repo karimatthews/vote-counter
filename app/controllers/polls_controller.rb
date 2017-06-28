@@ -10,7 +10,7 @@ class PollsController < ApplicationController
   # GET /polls/1
   # GET /polls/1.json
   def show
-    
+
   end
 
   # GET /polls/new
@@ -27,13 +27,14 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(poll_params)
 
+
+    # declare variable with array from form
     options_param = params[:options]
-    @options = []
-    options_param.each.with_index(1) do |option, index|
-      option = Option.create(:name => option)
-      @options.push(option)
+
+    # map array from form to array of options in the database
+    @poll.options = options_param.map do |o|
+      Option.create(name: o) #create a row in the Options table with name == 'o' and poll_id the id of @poll 
     end
-    @poll.options = @options
 
     respond_to do |format|
       if @poll.save
