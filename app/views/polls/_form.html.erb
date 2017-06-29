@@ -14,7 +14,7 @@
 
   <div class = 'form'>
     <div class="field">
-      <%= form.label :title, 'Title / Question' %>
+      <%= form.label :title, 'Question:' %>
       <%= form.text_field :title, id: :poll_title %>
     </div>
 
@@ -29,7 +29,7 @@
     <button id="addNewOption">Add New Option</button>
 
     <div class="field">
-      <%= form.label :blind %>
+      <%= form.label :blind , 'Anonymous?'%>
       <%= form.check_box :blind, id: :poll_blind %>
     </div>
 
