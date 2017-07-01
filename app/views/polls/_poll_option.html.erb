@@ -2,8 +2,8 @@
 <div class="optionForm field">
      <!-- <%= label_tag "Option" %> -->
 
-     <%= text_field_tag "options[]" %>
+     <%= text_field_tag "options[]", nil, required:true %>
 
-     <button onclick="document.getElementById('poll_options').removeChild(this.parentNode);" class="remove" >X</button>
+     <button type='button' onclick="document.getElementById('poll_options').removeChild(this.parentNode);" class="remove" >X</button>
 
 </div>

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628082933) do
+ActiveRecord::Schema.define(version: 20170630110232) do
+
+  create_table "ballots", force: :cascade do |t|
+    t.integer "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["poll_id"], name: "index_ballots_on_poll_id"
+  end
 
   create_table "options", force: :cascade do |t|
     t.integer "poll_id"
@@ -26,6 +34,16 @@ ActiveRecord::Schema.define(version: 20170628082933) do
     t.boolean "blind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.integer "score"
+    t.integer "ballot_id"
+    t.integer "option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ballot_id"], name: "index_ranks_on_ballot_id"
+    t.index ["option_id"], name: "index_ranks_on_option_id"
   end
 
 end

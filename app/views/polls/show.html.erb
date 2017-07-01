@@ -7,16 +7,53 @@
 
 
 
-  <% if @poll.blind %>
-    <p> (This poll is anonymous.) </p>
-  <% else %>
-    <p> (This poll is not anonymous.) </p>
-  <% end %>
+<% if @poll.blind %>
+  <p> (This poll is anonymous.) </p>
+<% else %>
+  <p> (This poll is not anonymous.) </p>
+<% end %>
 
-  <strong> Options: </strong>
 
-  <% @poll.options.each do |option| %>
-    <%= option.name %>
-  <%end%>
+<%= form_with(local: true) do |form| %>
+  <div class = 'form'>
 
-  <button>Vote</button>
+    <% unless @poll.blind %>
+      <div class="field">
+        <%= form.label :name, 'Name:' %>
+        <%= form.text_field :name, id: :ballot_name, required:true %>
+      </div>
+    <% end %>
+
+    <% @poll.options.each do |option| %>
+        <div id = 'Rank' class = 'field'>
+            <%= form.label :rank_score, option.name%><%= %>
+            <%= form.select option.name + '_score', options_for_select(['1', '2']) %>
+        </div>
+    <%end%>
+
+    <button>Vote</button>
+  </div>
+<% end %>
+
+
+<strong> Number of votes (to date) </strong>
+
+<br><br>
+
+<%= @poll.ballots.count %>
+
+
+<script>
+
+  var length = <%= @poll.options.count %>
+
+  var optionsForRank = [];
+
+  for (var i = 1; i <= length; i++) {
+    optionsForRank.push(i);
+  }
+
+
+
+
+</script>

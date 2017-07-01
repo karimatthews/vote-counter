@@ -56,6 +56,11 @@ label {
   margin-right: 20px;
 }
 
+button {
+  width: 150px;
+  margin-top: 20px;
+}
+
 
 .actions input {
   width: 150px;
