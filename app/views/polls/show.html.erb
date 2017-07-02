@@ -27,7 +27,7 @@
     <% @poll.options.each do |option| %>
         <div id = 'Rank' class = 'field'>
             <%= form.label :rank_score, option.name%><%= %>
-            <%= form.select option.name + '_score', options_for_select(['1', '2']) %>
+            <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)) %>
         </div>
     <%end%>
 
@@ -35,25 +35,35 @@
   </div>
 <% end %>
 
-
-<strong> Number of votes (to date) </strong>
-
 <br><br>
+
+<strong> Number of votes submitted: </strong>
 
 <%= @poll.ballots.count %>
 
+<br><br>
 
-<script>
+<strong> Result (Instant-runoff) </strong>
 
-  var length = <%= @poll.options.count %>
+<br><br>
 
-  var optionsForRank = [];
+<%= @winner.inspect %>
 
-  for (var i = 1; i <= length; i++) {
-    optionsForRank.push(i);
-  }
+<br><br>
 
+<% unless @poll.blind %>
+  <strong> Participants: </strong>
 
+  <br><br>
 
-
-</script>
+  <% @poll.ballots.each do |ballot| %>
+    <%= ballot.name %>:
+    <br>
+    <% ballot.ranks.each do |rank| %>
+      <%= rank.option.name %>
+      <%= rank.score %>
+      <br>
+    <% end %>
+    <br>
+  <% end %>
+<% end %>

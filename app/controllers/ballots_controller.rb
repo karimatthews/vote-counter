@@ -8,6 +8,8 @@ class BallotsController < ApplicationController
       Rank.new(score: params[o.name + '_score'], option: o)
     end
 
+
+
     respond_to do |format|
       if @ballot.save
         format.html { redirect_to @ballot.poll, notice: 'Ballot was successfully submitted.' }
@@ -18,6 +20,14 @@ class BallotsController < ApplicationController
       end
     end
   end
+
+
+
+
+
+
+
+
 
   private
 

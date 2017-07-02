@@ -11,6 +11,32 @@ class PollsController < ApplicationController
   # GET /polls/1.json
   def show
     @ballot = Ballot.new
+
+    @losers = []
+
+    def remove_loser(ranks)
+      loser = get_loser(ranks)
+      @losers.push(loser)
+      ranks.select {|r| r.option.name != loser}
+    end
+
+    def only_one_left(ranks)
+      list = ranks.map{ |r| r.option.name }
+      list.uniq.length == 1
+    end
+
+    def get_loser(ranks)
+      list = ranks.select { |r| r.score == 1 }.map { |r| r.option.name }
+      list.group_by(&:itself).map {|option, count| [option, count]}.sort.reverse.first.first
+    end
+
+    def recursively_vote(ranks)
+      return ranks if only_one_left(ranks)
+      recursively_vote(remove_loser(ranks))
+    end
+
+    @winner = recursively_vote(@poll.ranks).first.option.name
+
   end
 
   # GET /polls/new
