@@ -2,20 +2,20 @@
 
 
 <div style = 'display: flex'>
-  <h1>Polls</h1>
+  <h1>Explore Polls</h1>
 
   <%= link_to new_poll_path do %>
-    <button id = 'newPoll'>
+    <button class = 'btn btn--new-poll'>
        <span> New Poll </span>
      </button>
   <% end %>
 </div>
 
-<div id = 'display-polls'>
+<div class = 'display-polls'>
   <% @polls.each do |poll| %>
     <%= link_to poll do %>
-      <div class = 'poll'>
-        <span> <%= poll.title %> </span>
+      <div class = 'display-polls__poll'>
+        <span class = 'display-polls__poll-title'> <%= poll.title %> </span>
       </div>
     <% end %>
   <% end %>

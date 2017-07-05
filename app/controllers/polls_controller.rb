@@ -35,7 +35,9 @@ class PollsController < ApplicationController
       recursively_vote(remove_loser(ranks))
     end
 
-    @winner = recursively_vote(@poll.ranks).first.option.name
+    if @poll.ballots.present?
+      @winner = recursively_vote(@poll.ranks).first.option.name
+    end
 
   end
 

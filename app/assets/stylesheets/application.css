@@ -14,21 +14,131 @@
  *= require_self
  */
 
+ /**
+ * CONTENTS
+ *
+ * ELEMENTS
+ *
+ * BLOCKS
+  * .navbar
+  *
+ *
+ * TOOLS
+ * Mixins...............Useful mixins.
+ *
+ * GENERIC
+ * Normalize.css........A level playing form__field.
+ * Box-sizing...........Better default `box-sizing`.
+ *
+ * BASE
+ * Headings.............H1–H6 styles.
+ *
+ * OBJECTS
+ * Wrappers.............Wrapping and constraining elements.
+ *
+ * COMPONENTS
+ * Page-head............The main page header.
+ * Page-foot............The main page footer.
+ * Buttons..............Button elements.
+ *
+ * TRUMPS
+ * Text.................Text helpers.
+ */
+
+ /*------------------------------------*\
+  #ELEMENTS
+\*------------------------------------*/
+
+
+ #notice {
+   color: green;
+ }
 
  body {
    background-color: #fff;
    color: #333;
    margin: 0;
    font-family: verdana, arial, helvetica, sans-serif;
-   font-size: 1em;
+   /*font-size: 1em;*/
  }
 
- #container {
-   margin-left: 100px;
-   margin-top: 40px;
- }
+ table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
 
- #topbar {
+th, td {
+  width: 100px;
+}
+
+label {
+  margin-right: 20px;
+}
+
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+input {
+  width: 300px;
+}
+
+input[type=submit] {
+  width: 150px;
+  margin-top: 20px;
+  padding-top: 4px;
+}
+
+
+/*------------------------------------*\
+ #btn
+\*------------------------------------*/
+
+.btn {
+  width: 150px;
+  margin-top: 20px;
+  padding: 4px;
+}
+
+.btn--remove {
+  font-weight: bold;
+  background-color: red;
+  color: white;
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.btn--new-poll {
+  margin-left: 60px;
+  margin-top: 35px;
+}
+
+
+
+
+
+/*------------------------------------*\
+ #wrapper
+\*------------------------------------*/
+
+.wrapper {
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+
+
+
+
+
+/*------------------------------------*\
+ #navbar
+\*------------------------------------*/
+
+.navbar {
    color: #000;
    background-color: #fff;
    display: flex;
@@ -38,13 +148,34 @@
    box-shadow: 1px 2px 3px #333;
  }
 
-.tab {
+.navbar__tab {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 100px;
 }
 
-.field {
+
+
+
+
+/*------------------------------------*\
+ #form
+\*------------------------------------*/
+
+.form {
+  background-color: #fff;
+  border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  width: 80%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+
+.form__field {
   display: flex;
   width: 300px;
   margin: 20px;
@@ -52,55 +183,22 @@
   margin-left: 0px;
 }
 
-label {
-  margin-right: 20px;
-}
-
-button {
-  width: 150px;
-  margin-top: 20px;
-}
 
 
-.actions input {
-  width: 150px;
-  padding: 4px;
-  margin-top: 20px;
-}
 
-.form {
-  background-color: #fff;
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
-  width: 500px;
-  padding: 20px;
+
+/*------------------------------------*\
+ #display-polls
+
+ *used in the polls index
+\*------------------------------------*/
+
+.display-polls {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
-.remove {
-  font-weight: bold;
-  background-color: red;
-  color: white;
-  margin-left: 5px;
-}
-
-#addNewOption {
-  width: 150px;
-  padding: 4px;
-  margin-top: 20px;
-
-}
-
-#newPoll {
-  margin-left: 60px;
-  margin-top: 35px;
-  padding: 4px;
-  width: 100px;
-}
-
-.poll {
+.display-polls__poll {
   width: 300px;
   height: 300px;
   background-color: black;
@@ -109,39 +207,23 @@ button {
   margin-top: 20px;
   border-radius: 5px;
   display: flex;
+  padding: 20px;
 }
 
-#poll_title {
-  width: 400px;
-}
-
-#display-polls {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
- .poll span {
+ .display-polls__poll-title {
   margin: auto;
   font-size: 1.5em;
 }
 
- a {
-   color: #000;
-   text-decoration: none;
- }
 
- #notice {
-   color: green;
- }
 
- .field_with_errors {
-   padding: 2px;
-   background-color: red;
-   display: table;
- }
 
- #error_explanation {
+
+/*------------------------------------*\
+ #error-explanation
+\*------------------------------------*/
+
+ .error-explanation {
    width: 450px;
    border: 2px solid red;
    padding: 7px 7px 0;

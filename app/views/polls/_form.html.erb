@@ -1,6 +1,6 @@
 <%= form_with(model: poll, local: true) do |form| %>
   <% if poll.errors.any? %>
-    <div id="error_explanation">
+    <div class="error-explanation">
       <h2><%= pluralize(poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
 
       <ul>
@@ -13,27 +13,30 @@
 
 
   <div class = 'form'>
-    <div class="field">
+    <div class="form__field">
       <%= form.label :title, 'Question:' %>
       <%= form.text_field :title, id: :poll_title, required:true%>
     </div>
 
-    <div class = "field">
+    <div class = "form__field">
+      <%= form.label :options, 'Options:' %>
       <div id="poll_options">
-        <h3> Options: </h3>
+        <%= render 'poll_option' %>
         <%= render 'poll_option' %>
         <%= render 'poll_option' %>
       </div>
     </div>
 
-    <button type='button' id="addNewOption">Add New Option</button>
+    <button type='button' id="addNewOption" class = 'btn'>Add New Option</button>
 
-    <div class="field">
+    <div class="form__field">
       <%= form.label :blind , 'Anonymous?'%>
       <%= form.check_box :blind, id: :poll_blind %>
     </div>
 
-    <div class="actions">
+
+
+    <div>
       <%= form.submit %>
     </div>
   </div>

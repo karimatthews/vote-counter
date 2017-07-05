@@ -18,14 +18,14 @@
   <div class = 'form'>
 
     <% unless @poll.blind %>
-      <div class="field">
+      <div class="form__field">
         <%= form.label :name, 'Name:' %>
         <%= form.text_field :name, id: :ballot_name, required:true %>
       </div>
     <% end %>
 
     <% @poll.options.each do |option| %>
-        <div id = 'Rank' class = 'field'>
+        <div id = 'Rank' class = 'form__field'>
             <%= form.label :rank_score, option.name%><%= %>
             <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)) %>
         </div>
@@ -36,6 +36,8 @@
 <% end %>
 
 <br><br>
+
+
 
 <strong> Number of votes submitted: </strong>
 
@@ -56,14 +58,25 @@
 
   <br><br>
 
-  <% @poll.ballots.each do |ballot| %>
-    <%= ballot.name %>:
-    <br>
-    <% ballot.ranks.each do |rank| %>
-      <%= rank.option.name %>
-      <%= rank.score %>
-      <br>
+  <table>
+    <tr>
+      <th></th>
+        <% @poll.options.each do |option| %>
+          <th>
+            <%= option.name %>
+          </th>
+        <% end %>
+    </tr>
+
+    <% @poll.ballots.each do |ballot| %>
+      <tr>
+        <th> <%= ballot.name %> </th>
+        <% ballot.ranks.each do |rank| %>
+          <td> <%= rank.score %> </td>
+        <% end %>
+      </tr>
     <% end %>
-    <br>
-  <% end %>
+  </table>
+
+
 <% end %>
