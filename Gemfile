@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 # Use jquery
 gem 'jquery-rails'
 
+# Use Deep cloneable
+gem 'deep_cloneable'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

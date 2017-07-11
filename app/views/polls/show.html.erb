@@ -19,19 +19,19 @@
 
     <% unless @poll.blind %>
       <div class="form__field">
-        <%= form.label :name, 'Name:' %>
+        <%= form.label :name, 'Name:', class: 'form__label' %>
         <%= form.text_field :name, id: :ballot_name, required:true %>
       </div>
     <% end %>
 
     <% @poll.options.each do |option| %>
-        <div id = 'Rank' class = 'form__field'>
-            <%= form.label :rank_score, option.name%><%= %>
-            <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)) %>
+        <div id = 'Rank' class = 'form__field form__field--row'>
+            <%= form.label :rank_score, option.name, class: 'form__label'%>
+            <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)), class: 'form__arrow' %>
         </div>
     <%end%>
 
-    <button>Vote</button>
+    <button class = 'btn'>Vote</button>
   </div>
 <% end %>
 
@@ -39,19 +39,25 @@
 
 
 
+<strong> Winner (Instant-runoff):  </strong>
+
+<%= @winner%>
+
+<br><br><br><br>
+
+
+
+
+
 <strong> Number of votes submitted: </strong>
 
 <%= @poll.ballots.count %>
 
-<br><br>
+<br><br><br><br>
 
-<strong> Result (Instant-runoff) </strong>
 
-<br><br>
 
-<%= @winner.inspect %>
 
-<br><br>
 
 <% unless @poll.blind %>
   <strong> Participants: </strong>

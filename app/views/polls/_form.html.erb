@@ -13,13 +13,14 @@
 
 
   <div class = 'form'>
+
     <div class="form__field">
-      <%= form.label :title, 'Question:' %>
+      <%= form.label :title, 'Question:', class: 'form__label' %>
       <%= form.text_field :title, id: :poll_title, required:true%>
     </div>
 
     <div class = "form__field">
-      <%= form.label :options, 'Options:' %>
+      <%= form.label :options, 'Options:', class: 'form__label' %>
       <div id="poll_options">
         <%= render 'poll_option' %>
         <%= render 'poll_option' %>
@@ -27,9 +28,9 @@
       </div>
     </div>
 
-    <button type='button' id="addNewOption" class = 'btn'>Add New Option</button>
+    <button type='button' id="addNewOption" class = 'btn btn--new-option'>Add New Option</button>
 
-    <div class="form__field">
+    <div class="form__field form__field--row">
       <%= form.label :blind , 'Anonymous?'%>
       <%= form.check_box :blind, id: :poll_blind %>
     </div>

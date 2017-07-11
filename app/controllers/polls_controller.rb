@@ -12,33 +12,10 @@ class PollsController < ApplicationController
   def show
     @ballot = Ballot.new
 
-    @losers = []
-
-    def remove_loser(ranks)
-      loser = get_loser(ranks)
-      @losers.push(loser)
-      ranks.select {|r| r.option.name != loser}
-    end
-
-    def only_one_left(ranks)
-      list = ranks.map{ |r| r.option.name }
-      list.uniq.length == 1
-    end
-
-    def get_loser(ranks)
-      list = ranks.select { |r| r.score == 1 }.map { |r| r.option.name }
-      list.group_by(&:itself).map {|option, count| [option, count]}.sort.reverse.first.first
-    end
-
-    def recursively_vote(ranks)
-      return ranks if only_one_left(ranks)
-      recursively_vote(remove_loser(ranks))
-    end
-
+    # Don't try and calculate winner on a poll with no ballots
     if @poll.ballots.present?
-      @winner = recursively_vote(@poll.ranks).first.option.name
+      @winner = InstantRunoff.new(@poll).winner
     end
-
   end
 
   # GET /polls/new
@@ -54,7 +31,6 @@ class PollsController < ApplicationController
   # POST /polls.json
   def create
     @poll = Poll.new(poll_params)
-
 
     # declare variable with array from form
     options_param = params[:options]
@@ -74,9 +50,6 @@ class PollsController < ApplicationController
       end
     end
   end
-
-
-
 
   # PATCH/PUT /polls/1
   # PATCH/PUT /polls/1.json
