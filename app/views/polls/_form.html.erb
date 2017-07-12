@@ -13,7 +13,6 @@
 
 
   <div class = 'form'>
-
     <div class="form__field">
       <%= form.label :title, 'Question:', class: 'form__label' %>
       <%= form.text_field :title, id: :poll_title, required:true%>
@@ -35,15 +34,10 @@
       <%= form.check_box :blind, id: :poll_blind %>
     </div>
 
-
-
     <div>
       <%= form.submit %>
     </div>
   </div>
-
-
-
 <% end %>
 
 <div style="display: none;" id="new_option_form">

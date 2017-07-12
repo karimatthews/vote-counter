@@ -1,88 +1,79 @@
-<p id="notice"><%= notice %></p>
-
-<h1>
-  <%= @poll.title %>
-</h1>
 
 
+<div class = 'wrapper__box wrapper__box--heading'>
 
+  <p id="notice"><%= notice %></p>
 
-<% if @poll.blind %>
-  <p> (This poll is anonymous.) </p>
-<% else %>
-  <p> (This poll is not anonymous.) </p>
-<% end %>
+  <h1>
+    <%= @poll.title %>
+  </h1>
 
+  <% if @poll.blind %>
+    <p> (This poll is anonymous.) </p>
+  <% else %>
+    <p> (This poll is not anonymous.) </p>
+  <% end %>
 
-<%= form_with(local: true) do |form| %>
-  <div class = 'form'>
+  <%= form_with(local: true) do |form| %>
+    <div class = 'form'>
 
-    <% unless @poll.blind %>
-      <div class="form__field">
-        <%= form.label :name, 'Name:', class: 'form__label' %>
-        <%= form.text_field :name, id: :ballot_name, required:true %>
-      </div>
-    <% end %>
-
-    <% @poll.options.each do |option| %>
-        <div id = 'Rank' class = 'form__field form__field--row'>
-            <%= form.label :rank_score, option.name, class: 'form__label'%>
-            <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)), class: 'form__arrow' %>
+      <% unless @poll.blind %>
+        <div class="form__field">
+          <%= form.label :name, 'Name:', class: 'form__label' %>
+          <%= form.text_field :name, id: :ballot_name, required:true %>
         </div>
-    <%end%>
+      <% end %>
 
-    <button class = 'btn'>Vote</button>
-  </div>
-<% end %>
+      <% @poll.options.each do |option| %>
+          <div id = 'Rank' class = 'form__field form__field--row'>
+              <%= form.label :rank_score, option.name, class: 'form__label'%>
+              <%= form.select option.name + '_score', options_for_select((1..@poll.options.count)), class: 'form__arrow' %>
+          </div>
+      <%end%>
 
-<br><br>
-
-
-
-<strong> Winner (Instant-runoff):  </strong>
-
-<%= @winner%>
-
-<br><br><br><br>
+      <button class = 'btn'>Vote</button>
+    </div>
+  <% end %>
+</div>
 
 
+<div class = 'wrapper__box '>
+  <strong> Winner (Instant-runoff):  </strong>
 
+  <%= @winner%>
 
+  <br><br><br><br>
 
-<strong> Number of votes submitted: </strong>
+  <strong> Number of votes submitted: </strong>
 
-<%= @poll.ballots.count %>
+  <%= @poll.ballots.count %>
 
-<br><br><br><br>
+  <br><br><br><br>
 
+  <% unless @poll.blind %>
+    <strong> Participants: </strong>
 
+    <br><br>
 
-
-
-<% unless @poll.blind %>
-  <strong> Participants: </strong>
-
-  <br><br>
-
-  <table>
-    <tr>
-      <th></th>
-        <% @poll.options.each do |option| %>
-          <th>
-            <%= option.name %>
-          </th>
-        <% end %>
-    </tr>
-
-    <% @poll.ballots.each do |ballot| %>
+    <table>
       <tr>
-        <th> <%= ballot.name %> </th>
-        <% ballot.ranks.each do |rank| %>
-          <td> <%= rank.score %> </td>
-        <% end %>
+        <th></th>
+          <% @poll.options.each do |option| %>
+            <th>
+              <%= option.name %>
+            </th>
+          <% end %>
       </tr>
+
+      <% @poll.ballots.each do |ballot| %>
+        <tr>
+          <th> <%= ballot.name %> </th>
+          <% ballot.ranks.each do |rank| %>
+            <td> <%= rank.score %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+
     <% end %>
-  </table>
-
-
-<% end %>
+  </div>
