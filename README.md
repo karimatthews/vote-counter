@@ -8,7 +8,7 @@ Vote Counter is a web application that serves two purposes. First, it functions 
 
 ## Usage
 
-Vote Counter will soon be deployed with heroku.
+Vote Counter is deployed with heroku [here](https://powerful-shore-69344.herokuapp.com/polls).
 
 ## Technology
 
