@@ -36,44 +36,46 @@
   <% end %>
 </div>
 
+<% if @poll.ballots.present? %>
+  <div class = 'wrapper__box '>
 
-<div class = 'wrapper__box '>
-  <strong> Winner (Instant-runoff):  </strong>
+    <p>
+      <strong> Winner (Instant-runoff):  </strong>
+      <%= @winner%>
+    </p>
 
-  <%= @winner%>
-
-  <br><br><br><br>
-
-  <strong> Number of votes submitted: </strong>
-
-  <%= @poll.ballots.count %>
-
-  <br><br><br><br>
-
-  <% unless @poll.blind %>
-    <strong> Participants: </strong>
+    <p>
+      <strong> Number of votes submitted:  </strong>
+      <%= @poll.ballots.count %>
+    </p>
 
     <br><br>
 
-    <table>
-      <tr>
-        <th></th>
-          <% @poll.options.each do |option| %>
-            <th>
-              <%= option.name %>
-            </th>
-          <% end %>
-      </tr>
+    <% unless @poll.blind %>
+      <strong> Ballots:  </strong>
 
-      <% @poll.ballots.each do |ballot| %>
+      <br><br>
+
+      <table>
         <tr>
-          <th> <%= ballot.name %> </th>
-          <% ballot.ranks.each do |rank| %>
-            <td> <%= rank.score %> </td>
-          <% end %>
+          <th></th>
+            <% @poll.options.each do |option| %>
+              <th>
+                <%= option.name %>
+              </th>
+            <% end %>
         </tr>
-      <% end %>
-    </table>
 
-    <% end %>
-  </div>
+        <% @poll.ballots.each do |ballot| %>
+          <tr>
+            <th> <%= ballot.name %> </th>
+            <% ballot.ranks.each do |rank| %>
+              <td> <%= rank.score %> </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+
+      <% end %>
+    </div>
+  <% end %>

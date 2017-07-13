@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+# Vote Counter
+Vote Counter is a web application that serves two purposes. First, it functions as a poll generator for making decisions among friends. Second, it aims to be an educational tool that helps people learn about preferential voting.
 
-* Configuration
+## Usage
 
-* Database creation
+Vote Counter will soon be deployed with heroku.
 
-* Database initialization
+## Technology
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Vote Counter uses vanilla Javascript on the frontend, and Rails with Postgres on the backend.

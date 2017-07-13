@@ -167,6 +167,7 @@ input[type=submit] {
 
 .wrapper {
   margin-left: 100px;
+  margin-right: 100px;
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -178,6 +179,7 @@ input[type=submit] {
   padding-top: 130px;
   margin-right: auto;
   margin-left: auto;
+  width: fit-content;
 }
 
 .wrapper__box--heading {
@@ -222,7 +224,7 @@ input[type=submit] {
 \*------------------------------------*/
 
 .form {
-  width: 600px;
+  width: fit-content;
   padding: 40px;
   padding-left: 0;
   display: flex;
